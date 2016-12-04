@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图片放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        /*放大镜效果元素样式*/
+        #wrap-box {
+            display: block;
+            width: 400px;
+            height: 255px;
+            margin: 50px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #small-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        #float-box {
+            display: none;
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+        }
+
+        #mark {
+            position: absolute;
+            display: block;
+            width: 400px;
+            height: 255px;
+            background-color: #fff;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;;
+        }
+
+        #big-box img {
+            position: absolute;
+            z-index: 5
+        }
+    </style>
+    <script>
+
+        //页面加载完毕后执行
+        window.onload = function () {
+
+            //配置项
+            var Dom = {
+                parentBox : 'wrap-box', //最外层块元素
+                smallBox : 'small-box', //小图片包含块
+                mark : 'mark', //解决IE闪跳块元素
+                floatBox : 'float-box', //阴影块元素
+                bigBox : 'big-box' //大图片包含块
+            };
+
+            imgMagnifier(Dom);
+        };
+
+    </script>
+</head>
+<body>
+<div id="wrap-box">
+    <div id="small-box">
+        <div id="mark"></div> <!--解决IE闪跳-->
+        <div id="float-box"></div>
+        <img src="img-small.jpg"/>
+    </div>
+    <div id="big-box">
+        <img src="img-big.jpg"/>
+    </div>
+</div>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
